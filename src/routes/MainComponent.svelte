@@ -153,8 +153,8 @@ function clearHistory() {
 
 // Called on X clicked
 function clearJobUrl() {
-  jobUrl = ""
-  jobLoaded = false
+  jobUrl = "";
+  jobLoaded = false;
 }
 
 </script>

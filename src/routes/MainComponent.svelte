@@ -165,7 +165,7 @@ function clearJobUrl() {
       <input type="file" accept=".txt,.pdf,.docx,.png,.jpg,.jpeg" bind:this={cvInput} onchange={handleCVUpload} />
       <span style="font-size: x-small;color:gray;font-style:italic">Max FileSize: 2MB</span>
       {#if cvUploaded}
-        <p>CV successfully received.</p>
+        <p>CV successfully uploaded.</p>
       {/if}
     </div>
 

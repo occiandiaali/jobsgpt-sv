@@ -34,7 +34,8 @@
     const fileMb = fileSize !== undefined ? fileSize / 1024**2 : 1.5;
     if (fileMb >= 2) {
       console.log(`FileSize: ${fileMb.toFixed(1)}MB`)
-      alert("Please, select a file that's less than 2MB!")
+      alert("Please, select a file that's less than 2MB!");
+      return;
     } else {
       console.log(`FileSize: ${fileMb.toFixed(1)}MB`)
     }
@@ -48,7 +49,7 @@
       const formData = new FormData();
       formData.append("cv", cvFile);
 
-      const res = await fetch("http://localhost:3333/upload-cv", {
+      const res = await fetch("https://jobsgpt-sv-server.onrender.com/upload-cv", {
         method: "POST",
         body: formData,
       });
@@ -72,7 +73,9 @@
     }
     try {
       loadingJob = true;
-      const res = await fetch(`http://localhost:3333/fetch-job?url=${encodeURIComponent(jobUrl)}`);
+      //https://jobsgpt-sv-server.onrender.com
+      //const res = await fetch(`http://localhost:3333/fetch-job?url=${encodeURIComponent(jobUrl)}`);
+      const res = await fetch(`https://jobsgpt-sv-server.onrender.com/fetch-job?url=${encodeURIComponent(jobUrl)}`);
       const html = await res.text();
       jobText = html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
       jobLoaded = true; // show confirmation
@@ -158,7 +161,7 @@ function clearJobUrl() {
 <div class="wrapper">
   <aside>
     <div class="row">
-      <h2>Upload CV</h2>
+      <h3>Upload CV</h3>
       <input type="file" accept=".txt,.pdf,.docx,.png,.jpg,.jpeg" bind:this={cvInput} onchange={handleCVUpload} />
       <span style="font-size: x-small;color:gray;font-style:italic">Max FileSize: 2MB</span>
       {#if cvUploaded}
@@ -167,9 +170,9 @@ function clearJobUrl() {
     </div>
 
     <div class="row posting">
-      <h2>Job Posting</h2>
+      <h3>Job Posting</h3>
       <div>
-        <input type="url" class="urlInput" bind:value={jobUrl} placeholder="Job link e.g https://joblink.domain" />
+        <input type="url" class="urlInput" bind:value={jobUrl} pattern="https://.*" placeholder="https://joblink.domain" />
         {#if jobUrl}
           <span style="cursor: pointer;color:red;font-weight:700;" role="button" tabindex="-1" onkeydown={clearJobUrl} onclick={clearJobUrl}>X</span>
         {/if}
@@ -184,7 +187,7 @@ function clearJobUrl() {
 
   <aside>
     <div class="row">
-      <h2>Chat</h2>
+      <h3>Chat</h3>
       {#if messages.length > 0}
       <div class="chat-box" bind:this={chatBox}>
         {#each messages as m}

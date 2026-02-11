@@ -1,9 +1,9 @@
 <script lang="ts">
   import Router from 'svelte-spa-router';
-  import svelteLogo from './assets/svelte.svg'
+  //import svelteLogo from './assets/svelte.svg'
   import appLogo from './assets/logo-nobg.png'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  // import viteLogo from '/vite.svg'
+  // import Counter from './lib/Counter.svelte'
   import MainComponent from './routes/MainComponent.svelte';
   import NotFound from './routes/NotFound.svelte';
   import Profile from './routes/Profile.svelte';
